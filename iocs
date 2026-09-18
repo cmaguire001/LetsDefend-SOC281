@@ -1,0 +1,41 @@
+# Indicators of Compromise — SOC281
+
+## Network
+
+| Type | Value | Notes |
+|------|-------|-------|
+| Domain | cleanpatron.top | Sender domain in phishing email |
+| Email | jame@cleanpatron.top | Source of malicious URL |
+| Source IP | 172.16.17.97 | Internal host on victim network |
+
+## Host
+
+| Type | Value | Notes |
+|------|-------|-------|
+| Hostname | Andrew | Infected endpoint |
+| File path | C:\Users\LetsDefend\Downloads\20\20.exe | Parent process, executed |
+| Directory | C:\Users\LetsDefend\Downloads\cleaner\ | Current working directory |
+| Command | C:\Windows\system32\cmd.exe /c ipconfig /all | Discovery command triggered by malware |
+
+## MITRE ATT&CK Mapping
+
+| Technique | ID | Description |
+|-----------|-----|-------------|
+| System Network Configuration Discovery | T1016 | Primary detection |
+| Spearphishing Link | T1566.002 | Initial access vector |
+| Windows Management Instrumentation | T1047 | Related technique in rule |
+| PowerShell | T1059.001 | Related technique in rule |
+| Windows Command Shell | T1059.003 | Related technique in rule |
+| User Execution: Malicious File | T1204.002 | Related technique in rule |
+| Account Manipulation | T1098 | Related technique in rule |
+| BITS Jobs | T1197 | Related technique in rule |
+| Account Discovery | T1087 | Related technique in rule |
+
+## Recommended Response Actions
+
+1. Isolate host **Andrew** from the network
+2. Capture memory and disk images for forensics
+3. Block `cleanpatron.top` at DNS and email gateway
+4. Reset credentials for any accounts used on the host
+5. Search email logs for other recipients of the same campaign
+6. Check browser history for the phishing URL
